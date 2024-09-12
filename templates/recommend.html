@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    .text-white{
+        color:white
+    }
+</style>
+<body style="background-color:black">
+
+    <nav class="navbar" style="background-color:#891352">
+        <a class="navbar-brand" style=" font-size: 2.0em;">KK Book recommender</a>
+        <ul class="nav navbar-nav">
+            <a class="btn" href="/" style=" font-size: 1.5em; ">Home</a>
+            <a  class="btn" href="/recommend" style=" font-size: 1.5em">Recommend</a>
+            <a class="btn" style=" font-size: 1.5em;">Contact</a>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12" style="display: flex; justify-content: center; align-items: center;">
+                    <h1 class="text-white" style="font-size: 50px; text-align: center; width: 100%; color: #6D929B">Recommended Books</h1>
+                </div>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control" style="width:100%; height:50px;border:5px solid #891352; font-size:25px;" placeholder="Enter Book Name"><br>
+
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
+            {% if data %}
+
+             {% for i in data %}
+                <div class="col-md-3" style="margin-top:50px; border:5px solid #891352; border-radius: 10px; margin-left: 70px; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle, #fff5d1, #ffd6c2, #ffb7b3);">
+                    <div class="card" style="text-align: center; width: 100%;">
+                        <div class="card-body">
+                            <img class="card-img-top" style="border:5px solid #891352"  src="{{i[2]}}">
+                            <p class="text-white" style="color:black; font-weight: bold;">Book: {{i[0]}}</p>
+                            <h4 class="text-white"style="color:#891352;font-weight: bold;">Author: {{i[1]}}</h4>
+                        </div>
+                    </div>
+                </div>
+             {% endfor %}
+
+            {% endif %}
+
+
+
+
+        </div>
+    </div>
+
+</body>
+</html>
